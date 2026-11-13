@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) Google analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KEDYZ91RNH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KEDYZ91RNH');
+</script>
+<!-- mobile first development approach -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jonathan Gan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section class="hero">
+    <header class="main-header">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Webshop</a>
+      </nav>
+    </header>
+  
+    <div class="hero-content">
+      <img src="jonathan-gan-image.jpg" alt="Jonathan Gan" class="hero-image">
+  
+      <h1 class="hero-heading">Jonathan Gan</h1>
+  
+      <p class="hero-paragraph">
+        I am a passionate and driven individual with a strong interest in technology, 
+        innovation and Sports. I am always eager to learn new things and challenge myself.
+      </p>
+  
+      <a href="#about" class="hero-button">Learn More</a>
+    </div>
+  </section>
+  
+
+  <section id="about" class="about">
+    <h2 class="about-heading">About Jonathan Gan</h2>
+    <p class="about-paragraph">Certified Professional Scrum Product Owner</p>
+    <p class="about-paragraph">PowerBI Developer and Consulant specialized in Security and Authorisation</p>
+    <p class="about-paragraph">The greatest passionate amateur tennis player</p>
+
+</section> 
+
+  <section id="contact" class="contact">
+    <h2 class="contact-heading">Contact Me</h2>
+    <p class="contact-paragraph">Email: <a href="mailto:Jonathan@jonathan-gan.com">Jonathan@Jonathan-Gan.com</a></p> 
+    <p class="contact-paragraph">LinkedIn: <a 
+      href="https://www.linkedin.com/in/jonathan-gan/" target="_blank">
+      LinkedIn </a>
+    <!--<p class="contact-paragraph">Phone: +31 6 1234 5678</p>-->
+  </section>
+
+<!-- Footer -->
+
+<div id="footer"></div>
+
+<script>
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+</body>
+</html>
