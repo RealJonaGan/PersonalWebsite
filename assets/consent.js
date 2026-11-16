@@ -6,13 +6,14 @@
   // ====== PUT YOUR ANALYTICS HERE ======
   // This runs ONLY after a visitor accepts. Paste your analytics snippet inside.
   // Example for Google Analytics 4 (replace G-XXXXXXXXXX with your own ID):
-  //   const s = document.createElement("script");
-  //   s.async = true;
-  //   s.src = "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX";
-  //   document.head.appendChild(s);
-  //   window.dataLayer = window.dataLayer || [];
-  //   function gtag(){ dataLayer.push(arguments); }
-  //   gtag("js", new Date()); gtag("config", "G-XXXXXXXXXX");
+     const s = document.createElement("script");
+     s.async = true;
+     s.src = "https://www.googletagmanager.com/gtag/js?id=G-KEDYZ91RNH";
+     document.head.appendChild(s);
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){ dataLayer.push(arguments); }
+     gtag("js", new Date()); gtag("config", "G-KEDYZ91RNH");
+
   function loadAnalytics() {
     if (analyticsLoaded) return;
     analyticsLoaded = true;
