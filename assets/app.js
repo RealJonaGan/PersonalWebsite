@@ -44,9 +44,35 @@
   }
 
   // ---------- shared header / footer (markup lives in each page; this only fills in dynamic bits) ----------
-  function renderChrome() {
+  // Simple footer shown only if footer.html cannot be loaded: copyright line, plus a Contact link
+  // when CONTACT_URL is filled in config.js (for example "mailto:you@example.com").
+  function footerFallback() {
+    const kids = [h("span", {}, `© ${new Date().getFullYear()} ${cfg.SITE_NAME}`)];
+    if (cfg.CONTACT_URL) kids.push(h("span", {}, h("a", { href: cfg.CONTACT_URL }, "Contact")));
+    return h("footer", { class: "wrap site-footer" }, ...kids);
+  }
+
+  async function renderChrome() {
+    // Load the shared footer (footer.html) into the empty <div id="site-footer"> on the page
+    const slot = document.getElementById("site-footer");
+    if (slot) {
+      try {
+        const res = await fetch("footer.html");
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const tpl = document.createElement("template");
+        tpl.innerHTML = await res.text();
+        slot.replaceWith(tpl.content);
+      } catch (e) {
+        console.error("footer.html could not be loaded", e);
+        slot.replaceWith(footerFallback());  // show a simple footer instead of a blank space
+      }
+    }
     document.querySelectorAll("[data-site-name]").forEach((el) => (el.textContent = cfg.SITE_NAME));
     document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
+    // Instagram icon in the footer: becomes a real link once INSTAGRAM_URL is filled in config.js
+    document.querySelectorAll("[data-instagram]").forEach((el) => {
+      if (cfg.INSTAGRAM_URL) { el.href = cfg.INSTAGRAM_URL; el.target = "_blank"; el.rel = "noopener noreferrer"; }
+    });
     updateBadge();
   }
 
