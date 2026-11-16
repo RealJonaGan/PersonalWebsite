@@ -1,16 +1,29 @@
 <!doctype html>
 <html lang="en">
 <head>
+
+     <!-- Google tag (gtag.js) Google analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KEDYZ91RNH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KEDYZ91RNH');
+</script>
+
+    <!-- mobile first development approach -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <title>Welcome</title>
+
 </head>
 <body>
 <header class="wrap site-header">
-<a class="brand" href="index.html" data-site-name>[YOUR NAME]</a>
+<a class="brand" href="index.html" data-site-name>Jonathan Gan</a>
 <nav aria-label="Main">
 <a href="index.html" aria-current="page">Home</a>
 <a href="shop.html">Shop</a>
@@ -38,12 +51,25 @@
 <div class="grid" id="featured"></div>
 </section>
 <footer class="wrap site-footer">
-<span>© <span data-year></span> <span data-site-name>[YOUR NAME]</span></span>
+<span>© <span data-year></span> <span data-site-name>Jonathan Gan</span></span>
 <span><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a></span>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.4"></script>
 <script src="assets/config.js"></script>
 <script src="assets/app.js"></script>
 <script>Shop.renderChrome("home");Shop.renderProductGrid("featured",{limit:3});</script>
+
+<!-- Footer -->
+
+<div id="footer"></div>
+
+<script>
+  fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+
 </body>
 </html>
