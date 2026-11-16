@@ -152,7 +152,8 @@
       const { data, error } = await sb.rpc("place_order", {
         p_email: document.getElementById("email").value.trim(),
         p_name: document.getElementById("cname").value.trim(),
-        p_items: items });
+        p_items: items,
+        p_note: document.getElementById("note").value.trim() || null });
       if (error) { msg.className = "msg err"; msg.textContent = error.message; btn.disabled = false; return; }
       saveCart({});
       document.querySelector(".cart-wrap").replaceChildren(h("div", {},
