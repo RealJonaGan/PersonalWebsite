@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    
+      <!-- Google tag (gtag.js) Google analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KEDYZ91RNH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KEDYZ91RNH');
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<title>Your cart</title>
+</head>
+<body>
+<div id="site-header"></div>
+<main class="wrap">
+<h1 class="page-title">Your cart</h1>
+<div class="cart-wrap">
+<div class="lines" id="lines"></div>
+<aside class="summary" id="summary" hidden>
+<h2>Summary</h2>
+<div class="nm"><span>Subtotal</span><span id="subtotal"></span></div>
+<div class="nm"><span>Shipping</span><span style="color:var(--muted)">At checkout</span></div>
+<div class="nm total"><span>Total</span><span id="total"></span></div>
+<form id="checkout" style="display:flex;flex-direction:column;gap:16px">
+<label>Name<input id="cname" autocomplete="name"></label>
+<label>Email<input id="email" type="email" required autocomplete="email"></label>
+<button class="btn" id="pay" type="submit" style="height:52px">Place order</button>
+<p class="msg" id="msg" role="status"></p>
+</form>
+</aside>
+</div>
+</main>
+<div id="site-footer"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/app.js"></script>
+<script>Shop.renderChrome("cart");Shop.initCart();</script>
+</body>
+</html>
