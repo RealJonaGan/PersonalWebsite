@@ -3,7 +3,7 @@
 window.SHOP_CONFIG = {
   SUPABASE_URL: "https://romaxyypzvsrenjhmuap.supabase.co",
   SUPABASE_PUBLISHABLE_KEY: "sb_publishable__wY-hVPkHH_1sG-eZwWyiQ_CDNy2paL",
-  SITE_NAME: "[YOUR NAME]",
+  SITE_NAME: "Jonathan Gan",
   CURRENCY: "EUR",
   LOCALE: "en-NL"
 };
