@@ -1,6 +1,6 @@
 (function () {
   const cfg = window.SHOP_CONFIG;
-  const sb = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+  const sb = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_PUBLISHABLE_KEY);
   const CART_KEY = "shop_cart_v1";
 
   // ---------- helpers ----------
@@ -43,18 +43,10 @@
     document.querySelectorAll(".cart-link").forEach((el) => el.setAttribute("aria-label", `Cart, ${n} items`));
   }
 
-  // ---------- shared header / footer ----------
-  function renderChrome(active) {
-    const nav = h("nav", { "aria-label": "Main" },
-      ...[["index.html", "Home", "home"], ["shop.html", "Shop", "shop"], ["index.html#about", "About", "about"]]
-        .map(([href, label, key]) => h("a", { href, "aria-current": key === active ? "page" : false }, label)),
-      h("a", { class: "cart-link", href: "cart.html", "aria-current": active === "cart" ? "page" : false },
-        h("span", {}, "Cart ("), h("span", { "data-cart-count": "" }, "0"), h("span", {}, ")")));
-    document.getElementById("site-header").replaceWith(
-      h("header", { class: "wrap site-header" }, h("a", { class: "brand", href: "index.html" }, cfg.SITE_NAME), nav));
-    document.getElementById("site-footer").replaceWith(
-      h("footer", { class: "wrap site-footer" }, h("span", {}, `© ${new Date().getFullYear()} ${cfg.SITE_NAME}`),
-        h("span", {}, h("a", { href: "#" }, "Shipping"), h("a", { href: "#" }, "Returns"), h("a", { href: "#" }, "Contact"))));
+  // ---------- shared header / footer (markup lives in each page; this only fills in dynamic bits) ----------
+  function renderChrome() {
+    document.querySelectorAll("[data-site-name]").forEach((el) => (el.textContent = cfg.SITE_NAME));
+    document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
     updateBadge();
   }
 
