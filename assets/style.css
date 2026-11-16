@@ -1,60 +1,590 @@
-:root{--bg:#F4F1EA;--bg2:#EAE5DA;--ink:#2B2A27;--muted:#6B675F;--line:#CFC9BC;--sage:#6F7F6A;--ph:#E2DCCF}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-weight:300}
-a{color:var(--ink);text-decoration:none}a:hover{color:var(--muted)}
-:focus-visible{outline:2px solid var(--sage);outline-offset:3px}
-h1,h2{font-family:"Cormorant Garamond",serif;font-weight:300;margin:0}
-.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
-.site-header{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding-top:32px;padding-bottom:32px}
-.brand{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:400;letter-spacing:.04em}
-.site-header nav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:15px;letter-spacing:.06em}
-.site-header nav a{padding:12px 16px}
-.site-header nav a[aria-current=page]{border-bottom:1px solid var(--ink)}
-.site-header nav a.cart-link{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:999px}
-.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:32px;padding:96px 40px 120px}
-.hero h1{font-size:clamp(44px,7vw,72px);line-height:1.05;letter-spacing:.01em}
-.hero p{margin:0;max-width:520px;font-size:18px;line-height:1.7;color:var(--muted)}
-.actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
-.pill{display:inline-flex;align-items:center;justify-content:center;padding:14px 32px;border-radius:999px;border:1px solid var(--ink);font-size:15px;letter-spacing:.08em;background:transparent;color:var(--ink);cursor:pointer;font-family:inherit}
-.pill.solid,.btn{background:var(--ink);color:var(--bg)}
-.pill.solid:hover,.btn:hover{background:#44423d;color:var(--bg)}
-.btn{height:46px;border:0;border-radius:999px;font-family:inherit;font-size:14px;letter-spacing:.08em;cursor:pointer;padding:0 24px}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.about{background:var(--bg2);padding:96px 40px}
-.about .in{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:64px;align-items:center}
-.about .photo{aspect-ratio:4/5;background:#D9D2C3;border-radius:200px 200px 8px 8px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px}
-.about h2{font-size:44px;margin-bottom:20px}.about p{font-size:17px;line-height:1.8;color:var(--muted);margin:0 0 20px}
-.link{display:inline-block;border-bottom:1px solid var(--ink);padding:12px 0;font-size:15px;letter-spacing:.08em}
-.section-head{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:baseline;margin-bottom:40px}
-.section-head h2{font-size:44px}
-.page-title{font-size:56px;margin:56px 0 24px}
-.lead{max-width:560px;font-size:17px;line-height:1.7;color:var(--muted);margin:0 0 24px}
-.chips{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px}
-.chip{height:44px;padding:0 24px;border:1px solid var(--line);border-radius:999px;background:transparent;font-family:inherit;font-size:14px;letter-spacing:.06em;color:var(--ink);cursor:pointer}
-.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:56px 40px;padding-bottom:96px}
-.card{display:flex;flex-direction:column;gap:16px}
-.ph{aspect-ratio:1/1;background:var(--ph);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;letter-spacing:.1em;overflow:hidden}
-.ph img{width:100%;height:100%;object-fit:cover}
-.nm{display:flex;justify-content:space-between;gap:12px;font-size:16px}
-.row{display:flex;gap:12px;align-items:center}
-.step{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px}
-.step button{width:44px;height:44px;border:0;background:transparent;font-size:20px;color:var(--ink);cursor:pointer}
-.step span{min-width:24px;text-align:center;font-size:16px}
-.cart-wrap{display:flex;flex-wrap:wrap;gap:64px;align-items:flex-start;padding-bottom:96px}
-.lines{flex:2 1 520px;border-top:1px solid var(--line)}
-.line{display:flex;flex-wrap:wrap;gap:24px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line)}
-.line .ph{width:112px;height:112px;flex:none}
-.line .info{flex:1 1 180px;display:flex;flex-direction:column;gap:8px}
-.line .rm{font-size:14px;color:var(--muted);text-decoration:underline;background:none;border:0;padding:8px 0;align-self:flex-start;cursor:pointer;font-family:inherit}
-.line .tot{min-width:72px;text-align:right;font-size:17px}
-.summary{flex:1 1 320px;background:var(--bg2);border-radius:8px;padding:32px;display:flex;flex-direction:column;gap:20px}
-.summary h2{font-size:30px;font-weight:400}
-.summary .total{font-size:20px;border-top:1px solid var(--line);padding-top:20px}
-.summary label{display:flex;flex-direction:column;gap:6px;font-size:14px}
-.summary input{height:46px;border:1px solid var(--line);border-radius:8px;padding:0 14px;background:var(--bg);font:inherit;color:var(--ink)}
-.msg{font-size:15px;line-height:1.6}.msg.err{color:#8A3B2F}
-.empty{padding:48px 0;color:var(--muted);font-size:17px}
-.site-footer{border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;padding-top:40px;padding-bottom:40px;font-size:14px;color:var(--muted)}
-.site-footer a{color:var(--muted);padding:12px}
-@media (prefers-reduced-motion:no-preference){.btn,.pill,.chip{transition:background .2s}}
+/* ==========================================================================
+   STYLE SHEET: zen webshop
+   How to read this file:
+   - Each section starts with a big banner like this one.
+   - Colors and basic settings are at the top (section 1). Change them there
+     and the whole site follows.
+   - Sizes are in px. "gap" is the space between items, "padding" is the space
+     inside a box.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. COLORS (change the look of the whole site here)
+   ========================================================================== */
+:root {
+  --bg:    #F4F1EA;  /* page background (warm stone)            */
+  --bg2:   #EAE5DA;  /* darker background for blocks and cards  */
+  --ink:   #2B2A27;  /* main text and dark buttons              */
+  --muted: #6B675F;  /* softer grey-brown text                  */
+  --line:  #CFC9BC;  /* thin borders and divider lines          */
+  --sage:  #6F7F6A;  /* green accent, used for the focus ring   */
+  --ph:    #E2DCCF;  /* background of empty photo placeholders  */
+}
+
+
+/* ==========================================================================
+   2. BASE (rules for the whole page)
+   ========================================================================== */
+
+/* Makes width/height include padding and borders, which keeps sizes predictable */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, system-ui, sans-serif;  /* falls back to the system font */
+  font-weight: 300;                           /* light weight = calm feel      */
+}
+
+/* Links: dark, no underline, softer color on hover */
+a {
+  color: var(--ink);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--muted);
+}
+
+/* Green outline shown when someone navigates with the keyboard (accessibility) */
+:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 3px;
+}
+
+/* Headings use the elegant serif font */
+h1,
+h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* Centered content column. Used on the header, footer and main areas. */
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+
+/* ==========================================================================
+   3. HEADER AND MENU (top of every page)
+   ========================================================================== */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;                  /* lets the menu drop below the name on small screens */
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;   /* name on the left, menu on the right */
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+/* Your name / site title, top left */
+.brand {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+/* The menu row: Home, Shop, About, Journal, Contact, Cart */
+.site-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+}
+.site-header nav a {
+  padding: 12px 16px;               /* big enough to tap on a phone */
+}
+
+/* Underline under the page you are currently on */
+.site-header nav a[aria-current=page] {
+  border-bottom: 1px solid var(--ink);
+}
+
+/* The Cart link looks like a small rounded pill */
+.site-header nav a.cart-link {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;             /* 999px = fully rounded ends */
+}
+
+
+/* ==========================================================================
+   4. BUTTONS AND LINKS (reusable parts)
+   ========================================================================== */
+
+/* 4a. Big rounded buttons on the welcome page ("Visit the shop", "About me").
+       Default look = outlined. Add the class "solid" for the filled dark version. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  border-radius: 999px;
+  border: 1px solid var(--ink);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* 4b. Filled dark buttons: ".pill.solid" and ".btn" share the same colors */
+.pill.solid,
+.btn {
+  background: var(--ink);
+  color: var(--bg);
+}
+.pill.solid:hover,
+.btn:hover {
+  background: #44423d;              /* slightly lighter dark on hover */
+  color: var(--bg);
+}
+
+/* 4c. ".btn" = the "Add to cart", "Place order" buttons */
+.btn {
+  height: 46px;
+  border: 0;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  padding: 0 24px;
+}
+.btn:disabled {                      /* e.g. "Sold out" */
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 4d. Text link with a thin underline ("Read more", "View all items") */
+.link {
+  display: inline-block;
+  border-bottom: 1px solid var(--ink);
+  padding: 12px 0;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+}
+
+/* 4e. Category filter buttons on the shop page ("All", "Category A", ...) */
+.chip {
+  height: 44px;
+  padding: 0 24px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  cursor: pointer;
+}
+.chip[aria-pressed=true] {           /* the selected category is filled dark */
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+/* 4f. Quantity stepper:  [ -  1  + ]  */
+.step {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.step button {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  font-size: 20px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.step span {                         /* the number in the middle */
+  min-width: 24px;
+  text-align: center;
+  font-size: 16px;
+}
+
+
+/* ==========================================================================
+   5. WELCOME PAGE (index.html)
+   ========================================================================== */
+
+/* 5a. Top area: circle, big title, short text, two buttons */
+.hero {
+  display: flex;
+  flex-direction: column;            /* stack everything vertically */
+  align-items: center;
+  text-align: center;
+  gap: 32px;
+  padding: 96px 40px 120px;
+}
+.hero h1 {
+  font-size: clamp(44px, 7vw, 72px); /* shrinks on small screens, max 72px */
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+.hero p {
+  margin: 0;
+  max-width: 520px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* Row that holds the two hero buttons */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* 5b. "About" block: photo on the left, text on the right */
+.about {
+  background: var(--bg2);            /* darker band across the full width */
+  padding: 96px 40px;
+}
+.about .in {                         /* inner container */
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2 columns, 1 on phones */
+  gap: 64px;
+  align-items: center;
+}
+.about .photo {                      /* arched photo placeholder */
+  aspect-ratio: 4 / 5;
+  background: #D9D2C3;
+  border-radius: 200px 200px 8px 8px; /* round top, nearly square bottom */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+.about h2 {
+  font-size: 44px;
+  margin-bottom: 20px;
+}
+.about p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+
+/* 5c. Heading row above a product list: "From the shop" ........ "View all items" */
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 40px;
+}
+.section-head h2 {
+  font-size: 44px;
+}
+
+
+/* ==========================================================================
+   6. SHOP PAGE AND PRODUCT CARDS (shop.html, and the strip on the welcome page)
+   ========================================================================== */
+
+/* 6a. Page title and intro line */
+.page-title {
+  font-size: 56px;
+  margin: 56px 0 24px;
+}
+.lead {
+  max-width: 560px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+
+/* 6b. Row of category filter buttons (the buttons themselves: see 4e) */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+/* 6c. Product grid: as many columns as fit, each at least 260px wide */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 56px 40px;                    /* row gap, column gap */
+  padding-bottom: 96px;
+}
+
+/* 6d. One product card: photo, then name + price, then stepper + button */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Square photo area. Shows grey text until a real image is added. */
+.ph {
+  aspect-ratio: 1 / 1;
+  background: var(--ph);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  overflow: hidden;
+}
+.ph img {                            /* real product photo fills the square */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                 /* crops instead of stretching */
+}
+
+/* Name on the left, price on the right */
+.nm {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 16px;
+}
+
+/* Row with the stepper and the "Add to cart" button */
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+
+/* ==========================================================================
+   7. CART PAGE (cart.html)
+   ========================================================================== */
+
+/* 7a. Two columns: items on the left, summary on the right (stacks on phones) */
+.cart-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 64px;
+  align-items: flex-start;
+  padding-bottom: 96px;
+}
+
+/* 7b. List of cart items */
+.lines {
+  flex: 2 1 520px;                   /* takes about two thirds of the width */
+  border-top: 1px solid var(--line);
+}
+.line {                              /* one item in the cart */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.line .ph {                          /* small photo in the cart (overrides section 6) */
+  width: 112px;
+  height: 112px;
+  flex: none;
+}
+.line .info {                        /* name, price each, remove link */
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.line .rm {                          /* "Remove" link-style button */
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  padding: 8px 0;
+  align-self: flex-start;
+  cursor: pointer;
+  font-family: inherit;
+}
+.line .tot {                         /* line total on the far right */
+  min-width: 72px;
+  text-align: right;
+  font-size: 17px;
+}
+
+/* 7c. Order summary box with totals and the checkout form */
+.summary {
+  flex: 1 1 320px;
+  background: var(--bg2);
+  border-radius: 8px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.summary h2 {
+  font-size: 30px;
+  font-weight: 400;
+}
+.summary .total {                    /* the Total row, with a line above it */
+  font-size: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.summary label {                     /* label above each input field */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+.summary input {                     /* name and email fields */
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 14px;
+  background: var(--bg);
+  font: inherit;
+  color: var(--ink);
+}
+
+
+/* ==========================================================================
+   8. MESSAGES (status and empty states)
+   ========================================================================== */
+.msg {                               /* normal message, e.g. "Placing your order..." */
+  font-size: 15px;
+  line-height: 1.6;
+}
+.msg.err {                           /* error message (red-brown) */
+  color: #8A3B2F;
+}
+.empty {                             /* "Your cart is empty", "Loading..." */
+  padding: 48px 0;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+
+/* ==========================================================================
+   9. FOOTER (bottom of every page)
+   ========================================================================== */
+.site-footer {
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.site-footer a {
+  color: var(--muted);
+  padding: 12px;
+}
+
+/* "Cookie settings": a button that looks like a footer link */
+.linkbtn {
+  background: none;
+  border: 0;
+  padding: 12px;
+  font: inherit;
+  color: var(--muted);
+  cursor: pointer;
+}
+.linkbtn:hover {
+  color: var(--ink);
+}
+
+
+/* ==========================================================================
+   10. CONSENT BANNER (analytics accept / decline pop-up)
+   ========================================================================== */
+
+/* The floating card, bottom-left (full width on small screens) */
+#consent-banner {
+  position: fixed;                   /* stays in place while scrolling */
+  left: 24px;
+  bottom: 24px;
+  right: 24px;
+  max-width: 440px;
+  z-index: 50;                       /* sits above the page content */
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 8px 30px rgba(43, 42, 39, 0.12);
+  margin-bottom: env(safe-area-inset-bottom, 0); /* keeps clear of the phone home bar */
+}
+#consent-banner h2 {
+  font-size: 26px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+#consent-banner p {
+  margin: 0 0 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+#consent-banner p a {                /* "Privacy policy" link */
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+/* Decline and Accept sit side by side and look identical on purpose
+   (privacy rules ask that declining is as easy as accepting). */
+.consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.consent-btn {
+  flex: 1 1 120px;
+  min-height: 46px;
+  padding: 0 24px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+.consent-btn:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+
+/* ==========================================================================
+   11. MOTION (small fade on hover, skipped for people who turn motion off)
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .btn,
+  .pill,
+  .chip {
+    transition: background 0.2s;
+  }
+}

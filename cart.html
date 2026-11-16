@@ -32,6 +32,7 @@
 <form id="checkout" style="display:flex;flex-direction:column;gap:16px">
 <label>Name<input id="cname" autocomplete="name"></label>
 <label>Email<input id="email" type="email" required autocomplete="email"></label>
+<label>Note (optional, max 125 characters)<textarea id="note" rows="3" maxlength="125"></textarea></label>
 <button class="btn" id="pay" type="submit" style="height:52px">Place order</button>
 <p class="msg" id="msg" role="status"></p>
 </form>
@@ -40,11 +41,12 @@
 </main>
 <footer class="wrap site-footer">
 <span>© <span data-year></span> <span data-site-name>[YOUR NAME]</span></span>
-<span><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a></span>
+<span><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a><button type="button" class="linkbtn" data-consent-open>Cookie settings</button></span>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.4"></script>
 <script src="assets/config.js"></script>
 <script src="assets/app.js"></script>
+<script src="assets/consent.js"></script>
 <script>Shop.renderChrome("cart");Shop.initCart();</script>
 </body>
 </html>

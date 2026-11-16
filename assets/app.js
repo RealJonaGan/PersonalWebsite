@@ -52,7 +52,9 @@
 
   // ---------- products ----------
   async function fetchProducts() {
-    const { data, error } = await sb.from("products").select("*").eq("active", true).order("created_at");
+    const { data, error } = await sb.from("products").select("*").eq("active", true)
+      .order("sort_order", { ascending: true, nullsFirst: false }) // your manual order; blank = last
+      .order("created_at");                                          // then oldest first
     if (error) throw error;
     return data;
   }
