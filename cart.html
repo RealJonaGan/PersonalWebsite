@@ -1,16 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-    
-      <!-- Google tag (gtag.js) Google analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KEDYZ91RNH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KEDYZ91RNH');
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +9,17 @@
 <title>Your cart</title>
 </head>
 <body>
-<div id="site-header"></div>
+<header class="wrap site-header">
+<a class="brand" href="index.html" data-site-name>[YOUR NAME]</a>
+<nav aria-label="Main">
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="index.html#about">About</a>
+<a href="#">Journal</a>
+<a href="#">Contact</a>
+<a class="cart-link" href="cart.html" aria-current="page" aria-label="Cart, 0 items"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2B2A27" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11H6.2L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>Cart (<span data-cart-count>0</span>)</span></a>
+</nav>
+</header>
 <main class="wrap">
 <h1 class="page-title">Your cart</h1>
 <div class="cart-wrap">
@@ -38,8 +38,11 @@
 </aside>
 </div>
 </main>
-<div id="site-footer"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<footer class="wrap site-footer">
+<span>© <span data-year></span> <span data-site-name>[YOUR NAME]</span></span>
+<span><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a></span>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.4"></script>
 <script src="assets/config.js"></script>
 <script src="assets/app.js"></script>
 <script>Shop.renderChrome("cart");Shop.initCart();</script>
