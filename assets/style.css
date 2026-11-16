@@ -465,6 +465,15 @@ h2 {
   font: inherit;
   color: var(--ink);
 }
+.summary textarea {                  /* note field */
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: var(--bg);
+  font: inherit;
+  color: var(--ink);
+  resize: vertical;
+}
 
 
 /* ==========================================================================
@@ -501,6 +510,26 @@ h2 {
 .site-footer a {
   color: var(--muted);
   padding: 12px;
+}
+
+/* Left side of the footer: copyright text + Instagram icon */
+.footer-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+/* Instagram icon: 44px tap area, thin grey line icon, darker on hover */
+.site-footer .social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+}
+.site-footer .social:hover {
+  color: var(--ink);
 }
 
 /* "Cookie settings": a button that looks like a footer link */
