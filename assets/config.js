@@ -5,5 +5,6 @@ window.SHOP_CONFIG = {
   SUPABASE_PUBLISHABLE_KEY: "sb_publishable__wY-hVPkHH_1sG-eZwWyiQ_CDNy2paL",
   SITE_NAME: "Jonathan Gan",
   CURRENCY: "EUR",
-  LOCALE: "en-NL"
+  LOCALE: "en-NL",
+  INSTAGRAM_URL: "https://www.instagram.com/tennis.amateur/"
 };
