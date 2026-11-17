@@ -1,52 +1,138 @@
 <!doctype html>
 <html lang="en">
+
+<!-- ==========================================================================
+     CART PAGE (cart.html)
+     Page order, top to bottom:
+       1. Header with menu
+       2. Your cart: list of items on the left, order summary and checkout form on the right
+       3. Footer (loaded from footer.html)
+     The look comes from assets/style.css. The behaviour comes from the
+     scripts at the very bottom of this file.
+     The cart itself is stored in the visitor's browser. The order is only
+     sent to Supabase when the visitor clicks "Place order".
+     ========================================================================== -->
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-<title>Your cart</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- makes the page fit phone screens -->
+
+  <!-- Fonts from Google: Cormorant Garamond (headings) and Inter: body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- All colors, sizes and spacing for the site -->
+  <link rel="stylesheet" href="assets/style.css">
+
+  <title>Your cart</title> <!-- text shown on the browser tab -->
 </head>
+
 <body>
-<header class="wrap site-header">
-<a class="brand" href="index.html" data-site-name>[YOUR NAME]</a>
-<nav aria-label="Main">
-<a href="index.html">Home</a>
-<a href="shop.html">Shop</a>
-<a href="index.html#about">About</a>
-<a href="#">Journal</a>
-<a href="#">Contact</a>
-<a class="cart-link" href="cart.html" aria-current="page" aria-label="Cart, 0 items"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2B2A27" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11H6.2L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>Cart (<span data-cart-count>0</span>)</span></a>
-</nav>
-</header>
-<main class="wrap">
-<h1 class="page-title">Your cart</h1>
-<div class="cart-wrap">
-<div class="lines" id="lines"></div>
-<aside class="summary" id="summary" hidden>
-<h2>Summary</h2>
-<div class="nm"><span>Subtotal</span><span id="subtotal"></span></div>
-<div class="nm"><span>Shipping</span><span style="color:var(--muted)">At checkout</span></div>
-<div class="nm total"><span>Total</span><span id="total"></span></div>
-<form id="checkout" style="display:flex;flex-direction:column;gap:16px">
-<label>Name<input id="cname" autocomplete="name"></label>
-<label>Email<input id="email" type="email" required autocomplete="email"></label>
-<label>Note (optional, max 125 characters)<textarea id="note" rows="3" maxlength="125"></textarea></label>
-<button class="btn" id="pay" type="submit" style="height:52px">Place order</button>
-<p class="msg" id="msg" role="status"></p>
-</form>
-</aside>
-</div>
-</main>
-<footer class="wrap site-footer">
-<span>© <span data-year></span> <span data-site-name>[YOUR NAME]</span></span>
-<span><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a><button type="button" class="linkbtn" data-consent-open>Cookie settings</button></span>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.4"></script>
-<script src="assets/config.js"></script>
-<script src="assets/app.js"></script>
-<script src="assets/consent.js"></script>
-<script>Shop.renderChrome("cart");Shop.initCart();</script>
+
+  <!-- ======================================================================
+       1. HEADER: your name on the left, menu on the right
+       ====================================================================== -->
+  <header class="wrap site-header">
+
+    <!-- Your name. The text is replaced by SITE_NAME from assets/config.js (data-site-name is the marker). -->
+    <a class="brand" href="index.html" data-site-name>[YOUR NAME]</a>
+
+    <nav aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="index.html#about">About</a>               <!-- goes to the About section on the welcome page -->
+      <a href="#">Journal</a>                            <!-- TODO: replace # with your Journal page -->
+      <a href="#">Contact</a>                            <!-- TODO: replace # with your Contact page or a mailto: link -->
+
+      <!-- Cart button: aria-current marks it as the page you are on.
+           The number inside data-cart-count is updated automatically by assets/app.js. -->
+      <a class="cart-link" href="cart.html" aria-current="page" aria-label="Cart, 0 items">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2B2A27" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 8h14l-1.2 11H6.2L5 8z"/>
+          <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+        </svg>
+        <span>Cart (<span data-cart-count>0</span>)</span>
+      </a>
+    </nav>
+  </header>
+
+
+  <!-- ======================================================================
+       2. MAIN CONTENT: the cart
+       ====================================================================== -->
+  <main class="wrap">
+
+    <h1 class="page-title">Your cart</h1>
+
+    <div class="cart-wrap">
+
+      <!-- LEFT: the items in the cart.
+           Empty here: assets/app.js draws one row per item (photo, name, price, - / + stepper,
+           Remove link and line total), or shows "Your cart is empty". -->
+      <div class="lines" id="lines"></div>
+
+      <!-- RIGHT: order summary and checkout.
+           "hidden" keeps it out of sight until there is something in the cart;
+           assets/app.js shows it when the cart has items. -->
+      <aside class="summary" id="summary" hidden>
+        <h2>Summary</h2>
+
+        <!-- Totals: the amounts are filled in by assets/app.js -->
+        <div class="nm"><span>Subtotal</span><span id="subtotal"></span></div>
+        <div class="nm"><span>Shipping</span><span style="color:var(--muted)">At checkout</span></div>
+        <div class="nm total"><span>Total</span><span id="total"></span></div>
+
+        <!-- CHECKOUT FORM: when submitted, assets/app.js sends the order to Supabase -->
+        <form id="checkout" style="display:flex;flex-direction:column;gap:16px">
+
+          <label>Name<input id="cname" autocomplete="name"></label>
+
+          <!-- "required" means the order cannot be placed without an email -->
+          <label>Email<input id="email" type="email" required autocomplete="email"></label>
+
+          <!-- Optional note from the customer. maxlength="125" stops typing after 125 characters
+               (the database also cuts it at 125). -->
+          <label>Note (optional, max 125 characters)<textarea id="note" rows="3" maxlength="125"></textarea></label>
+
+          <button class="btn" id="pay" type="submit" style="height:52px">Place order</button>
+
+          <!-- Status text under the button: "Placing your order...", or an error message -->
+          <p class="msg" id="msg" role="status"></p>
+        </form>
+      </aside>
+
+    </div>
+  </main>
+
+
+  <!-- ======================================================================
+       3. FOOTER: empty spot. assets/app.js loads footer.html into it,
+          so the footer is edited in one place and shared by every page.
+       ====================================================================== -->
+  <div id="site-footer"></div>
+
+
+  <!-- ======================================================================
+       SCRIPTS: keep them in this order, each one depends on the one above
+       ====================================================================== -->
+
+  <!-- 1. Supabase library (talks to your database) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.4"></script>
+
+  <!-- 2. Your settings: Supabase URL and key, site name, Instagram link -->
+  <script src="assets/config.js"></script>
+
+  <!-- 3. Shop logic: loads products, cart, checkout, shared footer -->
+  <script src="assets/app.js"></script>
+
+  <!-- 4. Cookie consent banner for analytics (accept / decline) -->
+  <script src="assets/consent.js"></script>
+
+  <!-- 5. Start this page: fill in the footer and name, then build the cart and checkout -->
+  <script>
+    Shop.renderChrome("cart");
+    Shop.initCart();
+  </script>
+
 </body>
 </html>

@@ -1,39 +1,109 @@
 <!doctype html>
 <html lang="en">
+
+<!-- ==========================================================================
+     SHOP PAGE (shop.html)
+     Page order, top to bottom:
+       1. Header with menu
+       2. Title, intro line and category filter buttons
+       3. Product grid, loaded from Supabase
+       4. Footer (loaded from footer.html)
+     The look comes from assets/style.css. The behaviour comes from the
+     scripts at the very bottom of this file.
+     ========================================================================== -->
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-<title>Shop</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- makes the page fit phone screens -->
+
+  <!-- Fonts from Google: Cormorant Garamond (headings) and Inter (body text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- All colors, sizes and spacing for the site -->
+  <link rel="stylesheet" href="assets/style.css">
+
+  <title>Shop</title> <!-- text shown on the browser tab -->
 </head>
+
 <body>
-<header class="wrap site-header">
-<a class="brand" href="index.html" data-site-name>[YOUR NAME]</a>
-<nav aria-label="Main">
-<a href="index.html">Home</a>
-<a href="shop.html" aria-current="page">Shop</a>
-<a href="index.html#about">About</a>
-<a href="#">Journal</a>
-<a href="#">Contact</a>
-<a class="cart-link" href="cart.html" aria-label="Cart, 0 items"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2B2A27" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11H6.2L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>Cart (<span data-cart-count>0</span>)</span></a>
-</nav>
-</header>
-<main class="wrap">
-<h1 class="page-title">The shop</h1>
-<p class="lead">[One line about the home-organizing items.]</p>
-<div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
-<div class="grid" id="grid"></div>
-</main>
-<footer class="wrap site-footer">
-<span>© <span data-year></span> <span data-site-name>[YOUR NAME]</span></span>
-<span><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a><button type="button" class="linkbtn" data-consent-open>Cookie settings</button></span>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.4"></script>
-<script src="assets/config.js"></script>
-<script src="assets/app.js"></script>
-<script src="assets/consent.js"></script>
-<script>Shop.renderChrome("shop");Shop.initShop();</script>
+
+  <!-- ======================================================================
+       1. HEADER: your name on the left, menu on the right
+       ====================================================================== -->
+  <header class="wrap site-header">
+
+    <!-- Your name. The text is replaced by SITE_NAME from assets/config.js (data-site-name is the marker). -->
+    <a class="brand" href="index.html" data-site-name>[YOUR NAME]</a>
+
+    <nav aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="shop.html" aria-current="page">Shop</a>   <!-- aria-current underlines the page you are on -->
+      <a href="index.html#about">About</a>               <!-- goes to the About section on the welcome page -->
+      <a href="#">Journal</a>                            <!-- TODO: replace # with your Journal page -->
+      <a href="#">Contact</a>                            <!-- TODO: replace # with your Contact page or a mailto: link -->
+
+      <!-- Cart button with a small bag icon and the number of items.
+           The number inside data-cart-count is updated automatically by assets/app.js. -->
+      <a class="cart-link" href="cart.html" aria-label="Cart, 0 items">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2B2A27" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 8h14l-1.2 11H6.2L5 8z"/>
+          <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+        </svg>
+        <span>Cart (<span data-cart-count>0</span>)</span>
+      </a>
+    </nav>
+  </header>
+
+
+  <!-- ======================================================================
+       2 + 3. MAIN CONTENT: title, filters and products
+       ====================================================================== -->
+  <main class="wrap">
+
+    <h1 class="page-title">The shop</h1>
+    <p class="lead">[One line about the home-organizing items.]</p>   <!-- TODO: replace with your own intro line -->
+
+    <!-- Category filter buttons ("All", "Category A", ...).
+         Empty here: assets/app.js creates the buttons from the categories in your products table. -->
+    <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+
+    <!-- Product grid. Empty here: assets/app.js fills it with all active products,
+         in the order set by sort_order (items without a number come last, oldest first).
+         Each card has a photo, name, price, a - / + stepper and an "Add to cart" button. -->
+    <div class="grid" id="grid"></div>
+
+  </main>
+
+
+  <!-- ======================================================================
+       4. FOOTER: empty spot. assets/app.js loads footer.html into it,
+          so the footer is edited in one place and shared by every page.
+       ====================================================================== -->
+  <div id="site-footer"></div>
+
+
+  <!-- ======================================================================
+       SCRIPTS: keep them in this order, each one depends on the one above
+       ====================================================================== -->
+
+  <!-- 1. Supabase library (talks to your database) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.4"></script>
+
+  <!-- 2. Your settings: Supabase URL and key, site name, Instagram link -->
+  <script src="assets/config.js"></script>
+
+  <!-- 3. Shop logic: loads products, cart count, shared footer -->
+  <script src="assets/app.js"></script>
+
+  <!-- 4. Cookie consent banner for analytics (accept / decline) -->
+  <script src="assets/consent.js"></script>
+
+  <!-- 5. Start this page: fill in the footer and name, then build the filters and product grid -->
+  <script>
+    Shop.renderChrome("shop");
+    Shop.initShop();
+  </script>
+
 </body>
 </html>
